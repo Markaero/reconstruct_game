@@ -491,29 +491,31 @@ def SetGameMap(h_box,v_box):   		                  								#定義地圖長怎�
 	# Draw vertical boxes on map      #繪製垂直方向的格子
 	for i in range(1,v_box - 1):
 		#左邊那排格子
+		coord1 = h_box*2 + (v_box - 2)*2 - i
 		rect_left = start_left
 		rect_top = start_height - i*BOXHEIGHT
 		pygame.draw.rect(map_surface,BLACK,[rect_left,rect_top,BOXWIDTH,BOXHEIGHT],3)
-		text = font_obj.render(str(h_box*2 + (v_box - 2)*2 - i),True,WHITE,(0,0,0,0))
+		text = font_obj.render(str(coord),True,WHITE,(0,0,0,0))
 		text_rect = text.get_rect()
 		text_rect.center = (rect_left + BOXWIDTH/2,rect_top + BOXHEIGHT/2)
 		map_surface.blit(text,text_rect)
-		game_map[h_box*2 + (v_box - 2)*2 - i] = [rect_left,rect_top]
-		building_pos[h_box*2 + (v_box - 2)*2 - i] = [rect_left + map_left + BOXWIDTH, rect_top + map_top]
-		arrow_pos[h_box*2 + (v_box - 2)*2 - i] = [rect_left + map_left + BOXWIDTH + BLANKWIDTH, rect_top + map_top]
-		arrow_dir[h_box*2 + (v_box - 2)*2 - i] = '_right'
+		game_map[coord1] = [rect_left,rect_top]
+		building_pos[coord1] = [rect_left + map_left + BOXWIDTH, rect_top + map_top]
+		arrow_pos[coord1] = [rect_left + map_left + BOXWIDTH + BLANKWIDTH, rect_top + map_top]
+		arrow_dir[coord1] = '_right'
 		#右邊那排格子
+		coord2 = h_box + i - 1
 		rect_left = end_left
 		rect_top = start_height - i*BOXHEIGHT
 		pygame.draw.rect(map_surface,BLACK,[rect_left,rect_top,BOXWIDTH,BOXHEIGHT],3)
-		text = font_obj.render(str(h_box + i - 1),True,WHITE,(0,0,0,0))
+		text = font_obj.render(str(coord2),True,WHITE,(0,0,0,0))
 		text_rect = text.get_rect()
 		text_rect.center = (rect_left + BOXWIDTH/2,rect_top + BOXHEIGHT/2)
 		map_surface.blit(text,text_rect)
-		game_map[h_box + i - 1] = [rect_left,rect_top]
-		building_pos[h_box + i - 1] = [rect_left + map_left - BUILDINGWIDTH, rect_top + map_top]
-		arrow_pos[h_box + i - 1] = [rect_left + map_left - ARROWHEIGHT - BLANKWIDTH, rect_top + map_top]
-		arrow_dir[h_box + i - 1] = '_left'
+		game_map[coord2] = [rect_left,rect_top]
+		building_pos[coord2] = [rect_left + map_left - BUILDINGWIDTH, rect_top + map_top]
+		arrow_pos[coord2] = [rect_left + map_left - ARROWHEIGHT - BLANKWIDTH, rect_top + map_top]
+		arrow_dir[coord2] = '_left'
 
 	return map_surface, (map_left, map_top, map_width, map_height), game_map, building_pos, arrow_pos, arrow_dir
 
@@ -540,7 +542,7 @@ def DrawBuildings(location_list,building_pos,building_offset,arrow_dir):	#從Loc
 			window.blit(UI_IMAGES['building' + str(location.owner)],(pos_x,pos_y))
 
 
-def DrawPlayerData(players,name):								#利用game_class中來計算player的金錢有多少，並且在左上角將資訊繪製出來
+def Player_Data(players,name):								#利用game_class中來計算player的金錢有多少，並且在左上角將資訊繪製出來
 	data_offset = 50
 	for player in players:
 		text = font_obj.render('%5s%s：%d'% (name[player.player_num-1],'\'s cans',player.money),True,WHITE,(0,0,0,0))
