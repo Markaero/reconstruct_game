@@ -452,10 +452,11 @@ def SetGameMap(h_box,v_box):   		                  								#定義地圖長怎�
 	start_height = map_height - BOXHEIGHT
 	end_left = 0
 	end_height = 0
-	game_map = [None]*(h_box*2 + (v_box - 2)*2)
-	building_pos = [None]*(h_box*2 + (v_box - 2)*2)
-	arrow_pos = [None]*(h_box*2 + (v_box - 2)*2)
-	arrow_dir = [None]*(h_box*2 + (v_box - 2)*2)
+	position = [None]*(h_box*2 + (v_box - 2)*2)
+	game_map = position
+	building_pos = position
+	arrow_pos = position
+	arrow_dir = position
 
 	# Draw horizontal boxes on map   #繪製水平方向的格子
 	for i in range(h_box):
@@ -472,17 +473,18 @@ def SetGameMap(h_box,v_box):   		                  								#定義地圖長怎�
 		arrow_pos[i] = [rect_left + map_left, rect_top + map_top + BOXHEIGHT + BLANKHEIGHT]   #將每一個箭頭的左座標，上座標存起來
 		arrow_dir[i] = '_down'																  #定義箭頭的方向
 		#上面那排格子
+		coordinate = i + h_box + v_box - 2
 		rect_left = end_left + i*BOXWIDTH
 		rect_top = end_height
 		pygame.draw.rect(map_surface,BLACK,[rect_left,rect_top,BOXWIDTH,BOXHEIGHT],3)
-		text = font_obj.render(str(i + h_box + v_box - 2),True,WHITE,(0,0,0,0))
+		text = font_obj.render(str(coordinate),True,WHITE,(0,0,0,0))
 		text_rect = text.get_rect()
 		text_rect.center = (rect_left + BOXWIDTH/2,rect_top + BOXHEIGHT/2)
 		map_surface.blit(text,text_rect)
-		game_map[i + h_box + v_box - 2] = [rect_left,rect_top]
-		building_pos[i + h_box + v_box - 2] = [rect_left + map_left, rect_top + map_top - BUILDINGHEIGHT]
-		arrow_pos[i + h_box + v_box - 2] = [rect_left + map_left, rect_top + map_top - ARROWHEIGHT - BLANKHEIGHT]
-		arrow_dir[i + h_box + v_box - 2] = '_up'
+		game_map[coordinate] = [rect_left,rect_top]
+		building_pos[coordinate] = [rect_left + map_left, rect_top + map_top - BUILDINGHEIGHT]
+		arrow_pos[coordinate] = [rect_left + map_left, rect_top + map_top - ARROWHEIGHT - BLANKHEIGHT]
+		arrow_dir[coordinate] = '_up'
 
 	# Draw vertical boxes on map      #繪製垂直方向的格子
 	for i in range(1,v_box - 1):
