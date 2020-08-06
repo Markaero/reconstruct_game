@@ -195,10 +195,10 @@ def main():
 	ui_list.append(go_btn)															#利用game_class中定義的class來指定button中的變數→ __init__(self,btn_up,btn_down,pos)
 	step = 1 																		# Initial dice point
 
-	players = []																	#遊戲人數的串列
-	players.append(Player(1,INITMONEY))												#利用game_class中定義的class來指定player中的變數→ __init__(self,num,money)
-	players.append(Player(2,INITMONEY))
-	players.append(Player(3,INITMONEY))
+	players = []
+	for i in range(1,4):																	#遊戲人數的串列
+		players.append(Player(i,INITMONEY))												#利用game_class中定義的class來指定player中的變數→ __init__(self,num,money)
+
 	player_turn = 1
 	PLAYERNUM = len(players)
 
