@@ -456,10 +456,11 @@ def SetGameMap(h_box,v_box):   		                  								#定義地圖長怎�
 	start_height = map_height - BOXHEIGHT
 	end_left = 0
 	end_height = 0
-	game_map = [None]*(h_box*2 + (v_box - 2)*2)
-	building_pos = [None]*(h_box*2 + (v_box - 2)*2)
-	arrow_pos = [None]*(h_box*2 + (v_box - 2)*2)
-	arrow_dir = [None]*(h_box*2 + (v_box - 2)*2)
+	position = [None]*(h_box*2 + (v_box - 2)*2)
+	game_map = position
+	building_pos = position
+	arrow_pos = position
+	arrow_dir = position
 
 	# Draw horizontal boxes on map   #繪製水平方向的格子
 	for i in range(h_box):
