@@ -49,11 +49,11 @@ class Player:
 
 
 class Location:		
-	def __init__(self,num,image,pos,func,cost,extend_cost,tolls):	#第幾格,圖片,對應到game_map中的左座標及上座標,該格的功用,花費,額外花費,費用
+	def __init__(self,num,image,pos,square_function,cost,extend_cost,tolls):	#第幾格,圖片,對應到game_map中的左座標及上座標,該格的功用,花費,額外花費,費用
 		self.num = num
 		self.image = image
 		self.pos = pos
-		self.func = func
+		self.square_function = square_function
 		self.cost = cost
 		self.extend_cost = extend_cost
 		self.tolls = tolls

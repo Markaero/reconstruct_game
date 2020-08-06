@@ -265,7 +265,7 @@ def main():
 					# Execute loaction effect
 					location = location_list[player_cur.pos]						#看玩家現在在的那一格是哪裡存成location
 					attack_flag=0													#拿來判斷玩家是因為被攻擊而走到醫院(1)，或是自己丟骰子走到醫院去(0)，這兩者都要凍結玩家步數
-					if location.func == FUNCTION['attack']:							#如果玩家被攻擊的話，要重新繪製視窗(重複168行的東西)
+					if location.square_function == FUNCTION['attack']:							#如果玩家被攻擊的話，要重新繪製視窗(重複168行的東西)
 						# Redraw game window
 						RecordData(players,game_record,location_list)
 						DrawAll(blank_pos,map_pos,map_surface,arrow_pos,arrow_dir,building_pos,building_offset,step,ui_list,location_list,players,offset,name)
@@ -279,19 +279,19 @@ def main():
 						CreateMessageBox(name[player_cur.player_num-1] + ' is attacked! Go to Hospital!','Go to Hospital!',MESSAGE_BOX_TYPE['OK'])
 						GAMECLOCK.tick(2)											#2豪秒內更新視窗
 
-					elif location.func == FUNCTION['hospital']:						#如果走到醫院那格的話，要凍結步數(freeze_turn)
+					elif location.square_function == FUNCTION['hospital']:						#如果走到醫院那格的話，要凍結步數(freeze_turn)
 						if not attack_flag:
 							player_cur.freeze_turn = 2
 							pygame.time.delay(60) 
 							hospital.play()
 							CreateMessageBox(name[player_cur.player_num-1] + ' is in hospital！','Hospital!',MESSAGE_BOX_TYPE['OK'])
 
-					elif location.func == FUNCTION['cute']:							#如果停在露營那格，玩家的金錢會增加2000
+					elif location.square_function == FUNCTION['cute']:							#如果停在露營那格，玩家的金錢會增加2000
 							player_cur.money+=2000
 							moneyget.play()					                                                            
 							CreateMessageBox(name[player_cur.player_num-1]+' take cuties go to camping. Get 2000 cans.','Go Camping',MESSAGE_BOX_TYPE['OK']		)					
 
-					elif location.func == FUNCTION['fortune']:						#若走到命運格子，要重新繪製地圖
+					elif location.square_function == FUNCTION['fortune']:						#若走到命運格子，要重新繪製地圖
 						RecordData(players,game_record,location_list)				
 						DrawAll(blank_pos,map_pos,map_surface,arrow_pos,arrow_dir,building_pos,building_offset,step,ui_list,location_list,players,offset,name)
 						pygame.display.update()
@@ -386,7 +386,7 @@ def main():
 								RecordData(players,game_record,location_list)
 								player_cur,location_list=chance(players[j],location_list,game_record,name)  
 								
-					elif location.func == FUNCTION['estate']:						#如果玩家走到房地產的話，要重新繪製視窗(重複168行的東西)
+					elif location.square_function == FUNCTION['estate']:						#如果玩家走到房地產的話，要重新繪製視窗(重複168行的東西)
 						# Redraw game window
 						RecordData(players,game_record,location_list)
 						DrawAll(blank_pos,map_pos,map_surface,arrow_pos,arrow_dir,building_pos,building_offset,step,ui_list,location_list,players,offset,name)
