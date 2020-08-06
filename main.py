@@ -299,7 +299,6 @@ def main():
 						cans=['4000','5000','6000','700','1000','2000','3000','9000','3000']
 						i=random.randint(0,8)
 						Lose_Get=random.randint(0,2)
-
 						if Lose_Get == 1 or Lose_Get == 2:							#命運是不好的(lose)	
 							story=random.randint(1,6)
 							if story == 1:
@@ -338,8 +337,7 @@ def main():
 								for i in players:
 									i.money=int(m/3)
 
-						elif Lose_Get ==0:											#命運是好的(get)
-							#story=random.randint(1,6)					                                                    					    						
+						elif Lose_Get ==0:											#命運是好的(get)					                                                    					    						
 							story=4
 							if story == 1:
 								moneyget.play()					                                                            
@@ -377,7 +375,6 @@ def main():
 									i.money=int(m/3)
 						for j in range(len(players)):								#判斷經過命運之後，是否有玩家破產，若破產即跳出文字視窗，遊戲結束
 							if players[j].money<0:
-								#players[j].money=0
 								RecordData(players,game_record,location_list)
 								DrawAll(blank_pos,map_pos,map_surface,arrow_pos,arrow_dir,building_pos,building_offset,step,ui_list,location_list,players,offset,name)
 								pygame.display.update()
@@ -387,7 +384,6 @@ def main():
 								player_cur,location_list=chance(players[j],location_list,game_record,name)  
 								
 					elif location.func == FUNCTION['estate']:						#如果玩家走到房地產的話，要重新繪製視窗(重複168行的東西)
-						# Redraw game window
 						RecordData(players,game_record,location_list)
 						DrawAll(blank_pos,map_pos,map_surface,arrow_pos,arrow_dir,building_pos,building_offset,step,ui_list,location_list,players,offset,name)
 						pygame.display.update()
