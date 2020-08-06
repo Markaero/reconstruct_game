@@ -481,7 +481,7 @@ def SetGameMap(h_box,v_box):   		                  								#定義地圖長怎�
 		rect_left = end_left + i*BOXWIDTH
 		rect_top = end_height
 		pygame.draw.rect(map_surface,BLACK,[rect_left,rect_top,BOXWIDTH,BOXHEIGHT],3)
-		text = font_obj.render(str(i + h_box + v_box - 2),True,WHITE,(0,0,0,0))
+		text = font_obj.render(str(coordinate),True,WHITE,(0,0,0,0))
 		text_rect = text.get_rect()
 		text_rect.center = (rect_left + BOXWIDTH/2,rect_top + BOXHEIGHT/2)
 		map_surface.blit(text,text_rect)
